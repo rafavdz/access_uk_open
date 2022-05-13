@@ -63,11 +63,6 @@ type_establishment <-
   )
 schools_eng <- filter(schools_eng, typeofestablishment_name %in% type_establishment)
 
-# Print number of records by phase
-count(schools_eng, phaseofeducation_name)
-
-count(schools_eng, officialsixthform_name)
-count(schools_eng, furthereducationtype_name)
 
 # Classify primary schools, secondary schools, based on JTS:
 phase_primary <- c('Primary', 'Middle deemed primary', 'All-through')
@@ -81,10 +76,6 @@ schools_eng <- schools_eng %>%
 # Exclude if it is not primary or secondary
 schools_eng <- schools_eng %>% 
   filter(type_primary == TRUE | type_secondary == TRUE)
-
-# Number of shcools by type
-table(schools_eng$type_primary)
-table(schools_eng$type_secondary)
 
 ## Location
 # check if LSOA is included
@@ -138,7 +129,6 @@ glimpse(schools_wal)
 schools_wal <- schools_wal %>% 
   mutate(across(everything(), na_if, y = '---'))
 
-count(schools_wal, sector)
 # Classify whether they provide primary, secondary or equivalent education
 # Considering that middle covers a range from 3 to 19
 schools_wal <- schools_wal %>% 
@@ -174,13 +164,6 @@ schools_wal <- schools_wal %>%
   left_join(postcodes_all, by = c('postcode' = "pcds")) %>% 
   select(source_id:postcode, lsoa11, lat, long) %>% 
   bind_rows(schools_wal[!is.na(schools_wal$lat),])
-
-# View data
-glimpse(schools_wal)
-# Map
-schools_wal %>% 
-  st_as_sf(coords = c('long', 'lat'), crs = 4326) %>% 
-  mapview()
 
 
 # Format Scotland data ----------------------------------------------------
@@ -226,13 +209,6 @@ schools_sc <- schools_sc %>%
   select(source_id:type_secondary, lsoa11, lat, long) %>%
   bind_rows(schools_sc[!is.na(schools_sc$lat),])
 
-## Inspect data
-glimpse(schools_sc)
-# Interactive map
-schools_sc %>%
-  st_as_sf(coords = c('long', 'lat'), crs = 4326)  %>%
-  mapview::mapview()
-
 
 # Bind school data and save result ----------------------------------------
 
@@ -245,22 +221,8 @@ summary(schools_gb)
 schools_gb %>% 
   filter(!grepl("^[A-z]", lsoa11))
 
-
-# Quick map to visualize the density of schools
-schools_gb %>% 
-  st_as_sf(coords = c('long', 'lat'), crs = 4326) %>% 
-  st_transform(3035) %>% 
-  cbind(st_coordinates(.)) %>%
-  ggplot() +
-  geom_hex(aes(X, Y), bins = c(70, 90)) +
-  coord_equal() +
-  scale_fill_viridis_c(option = 'plasma') +
-  theme_void() 
-
-
 # Save data
 write_csv(schools_gb, 'data/schools/schools_gb.csv')
-
 
 # Clean env.
 rm(list = ls())
@@ -322,10 +284,6 @@ nearestSchool_pt2 <-
 nearestSchool_pt2[,nearest_secondary := fifelse(is.infinite(nearest_secondary), NA_integer_, nearest_secondary)]
 # Join
 nearestSchool_pt <- full_join(nearestSchool_pt1, nearestSchool_pt2, by = "fromId")
-# Summary
-summary(nearestSchool_pt)
-hist(nearestSchool_pt$nearest_primary, 40)
-hist(nearestSchool_pt$nearest_secondary, 40)
 
 
 # Cumulative accessibility ------------------------------------------------
@@ -348,12 +306,7 @@ access_primary_pt <-
 lapply(access_primary_pt, summary)
 # Bind estimates in a single DF
 access_primary_pt <- rbindlist(access_primary_pt)
-# Plot distribution of accessibility
-access_primary_pt %>% 
-  ggplot(aes(accessibility)) +
-  geom_histogram(binwidth = 30) +
-  coord_cartesian(xlim = c(0, 500)) +
-  facet_wrap(~time_cut)
+
 
 # Secondary schools
 # Access multiple time-cuts to 
@@ -368,12 +321,6 @@ access_secondary_pt <-
 lapply(access_secondary_pt, summary)
 # Bind estimates in a single DF
 access_secondary_pt <- rbindlist(access_secondary_pt)
-# Plot distribution of accessibility
-access_secondary_pt %>% 
-  ggplot(aes(accessibility)) +
-  geom_histogram(binwidth = 30) +
-  coord_cartesian(xlim = c(0, 500)) +
-  facet_wrap(~time_cut)
 
 # Bind rows
 access_pt <-

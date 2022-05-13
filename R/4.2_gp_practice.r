@@ -62,7 +62,7 @@ sum(is.na(gp_practices$lat))
 # Which postcode
 gp_practices[is.na(gp_practices$lat),]$postcode
 
-# Use terminated post codes data where there were not matches,
+# Use terminated post codes data where there were not matches
 # assuming post code is outdated from source
 gp_practices <- gp_practices %>%
   filter(is.na(lat)) %>%
@@ -71,14 +71,8 @@ gp_practices <- gp_practices %>%
   select(practice_code:postcode, lsoa11, lat, long) %>%
   bind_rows(gp_practices[!is.na(gp_practices$lat), ])
 
-# View GP location in map
-gp_practices %>% 
-  st_as_sf(coords = c('long', 'lat'), crs = 4326) %>% 
-  mapview::mapview()
-
 # Save GP practice data
 write_csv(gp_practices, 'data/gp surgery/gp_practiceGB.csv')
-
 
 # Clean env.
 rm(list = ls())
@@ -122,9 +116,6 @@ nearestGP_pt <-
        by=.(fromId)]
 # Transform Inf values to NA
 nearestGP_pt[,nearest_gp := fifelse(is.infinite(nearest_gp), NA_integer_, nearest_gp)]
-# Summary
-summary(nearestGP_pt)
-hist(nearestGP_pt$nearest_gp, breaks = 40)
 
 
 # Cumulative accessibility ------------------------------------------------
@@ -140,8 +131,7 @@ access_pt <-
     access[,access_pc := (accessibility / sum(gp_count$N)) * 100]
     access[,time_cut := x]
   })
-# Show summary
-lapply(access_pt, summary)
+
 # Bind estimates in a single DF
 access_pt <- rbindlist(access_pt)
 
@@ -172,7 +162,7 @@ access_ptF <- access_pt %>%
 access_ptF <- 
   left_join(centroids_gb, access_ptF, by = 'geo_code') %>% 
   left_join(nearestGP_pt, by = c('geo_code' = 'fromId'))
-summary(access_ptF)
+
 # Save accessibility estimates
 write_csv(access_ptF, 'output/accessibility/gp/access_gp_pt.csv')
 

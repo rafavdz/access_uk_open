@@ -88,8 +88,7 @@ get_walesData <-
     }
   }
 
-# Test function
-get_walesData(192)
+
 # Apply function
 # Consulted on: 2022-02-24
 wales_data <- lapply(1:250, get_walesData)
@@ -255,8 +254,6 @@ hosp_sco <- hosp_sco %>%
   rename(Longitude = X, Latitude = Y) %>% 
   st_set_geometry(NULL)
 
-glimpse(hosp_sco)
-
 
 # Merge data in GB -------------------------------------------------------
 
@@ -283,12 +280,6 @@ wales_dataF <- wales_data %>%
 
 # Bind list
 hops_gb <- bind_rows(hosp_engF,  hosp_scoF, wales_dataF)
-
-# Inspect data
-glimpse(hops_gb)
-hops_gb %>% 
-  st_as_sf(coords = c('longitude', 'latitude'), crs = 4326)  %>% 
-  mapview()
 
 # Save data
 write_csv(hops_gb, 'data/hospitals/hospitals_gb.csv')
@@ -344,8 +335,6 @@ nearestHosp_pt <-
          by=.(fromId)]
 # Transform Inf values to NA
 nearestHosp_pt[,nearest_hosp := fifelse(is.infinite(nearest_hosp), NA_integer_, nearest_hosp)]
-# Summary
-summary(nearestHosp_pt)
 
 
 # Cumulative accessibility  -----------------------------------------------
@@ -364,13 +353,6 @@ access_pt <-
 lapply(access_pt, summary)
 # Bind estimates in a single DF
 access_pt <- rbindlist(access_pt)
-# Plot distribution of accessibility
-access_pt %>% 
-  ggplot(aes(accessibility)) +
-  geom_histogram() +
-  #coord_cartesian(xlim = c(0, 500)) +
-  facet_wrap(~time_cut)
-
 
 
 ##----------------------------------------------------------------

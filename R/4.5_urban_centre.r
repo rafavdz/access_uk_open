@@ -73,11 +73,6 @@ main_bua <- inputed_centres %>%
 secondary_bua <- inputed_centres %>% 
   filter(name %in% nearest_bua)
 
-# Visualize centres 
-mapview(secondary_bua, col.region = 'yellow') +
-  mapview(main_bua, col.region = 'red')
-
-
 # Select relevant variables
 main_bua <- select(main_bua, name, pop11, geo_code)
 secondary_bua <- select(secondary_bua, name, pop11, geo_code)

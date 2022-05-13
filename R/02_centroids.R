@@ -54,11 +54,6 @@
   # Bind Scotland and England centroids
   gb_cent <- bind_rows(scot_cent, engl_cent)
   
-  # Visualize polygons not included
-  lsoa_gb %>% 
-    filter(!geo_code %in% gb_cent$geo_code) %>% 
-    mapview::mapview()
-  
   # Select variables
   gb_cent <- gb_cent %>% 
     select(-TotPop2011:-objectid)

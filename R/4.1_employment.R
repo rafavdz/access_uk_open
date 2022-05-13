@@ -48,16 +48,6 @@ employment_gb <- employment_gb %>%
   filter(!is.na(employment))
 summary(employment_gb)
 
-
-# Total employment
-sum(employment_gb$employment)
-# Employment by region
-employment_gb %>% 
-  mutate(region = substr(geo_code, 0, 1)) %>% 
-  group_by(region) %>% 
-  summarise(emp = sum(employment)) %>% 
-  mutate(percent = emp / sum(employment_gb$employment))
-
 # Save employment data
 write_csv(employment_gb, 'data/employment/employment_gb.csv')
 
@@ -95,12 +85,6 @@ access_pt <-
 lapply(access_pt, summary)
 # Bind estimates in a single DF
 access_pt <- rbindlist(access_pt)
-# Plot distribution of accessibility
-access_pt %>% 
-  ggplot(aes(accessibility)) +
-  geom_histogram(bins = 40) +
-  coord_cartesian(xlim = c(0, 7.5e6)) +
-  facet_wrap(~time_cut)
 
 
 ##----------------------------------------------------------------
@@ -109,10 +93,6 @@ access_pt %>%
 
 
 # Access Map 2: Multiple time-cuts by PT ----------------------------------
-
-# # Load wrapper fn to plot map in a single time cut
-# source('R/00_fn_map_access.R')
-
 
 # Join geometries to data
 lsoa_access <- dplyr::left_join(access_pt, lsoa_gb, by = c("fromId" = "geo_code"))

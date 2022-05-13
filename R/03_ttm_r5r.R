@@ -90,49 +90,6 @@ summary(ttm)
 date_s <- format(departure_datetime, "%Y%m%d")
 write_csv(ttm, paste0('output/ttm/ttm_pt_', date_s, '.csv'))
 
-
-# Inspect PT estimates ----------------------------------------------------
-
-ttm <- data.table::fread('output/ttm/ttm_pt_20211122.csv')
-summary(ttm)
-
-# Number of origins after removing NAs in Q2
-ttm[!is.na(travel_time_p050), uniqueN(fromId) ]
-# Show origins with only one destination available
-ttm[!is.na(travel_time_p050), .N, by= fromId][N == 1,]
-
-# Number of dest available
-dest_av <- ttm[!is.na(travel_time_p050), .N, by= fromId]
-# Plot number of LSOA available
-left_join(centroids, dest_av, by = c("id" = "fromId")) %>% 
-  ggplot() +
-    geom_sf(aes(col = N), alpha = 0.5) +
-    scale_color_viridis_c()
-
-
-# Plot time window
-# Compare departures from Edinburgh Central St. and London (Camden)
-plt_ttwindow <- ttm %>% 
-  filter(fromId == "S01008677" | fromId == "E01000956") %>% 
-  group_by(fromId) %>% 
-  mutate(tt_rank = frank(travel_time_p050)) %>% 
-  ggplot(aes(tt_rank)) +
-  geom_ribbon(aes(ymin = travel_time_p025, ymax = travel_time_p075, 
-                  fill = '1st-Q to 3rd-Q'), alpha = 0.5) +
-  geom_line(aes(y = travel_time_p050, col = 'Median')) +
-  facet_wrap(~fromId) +
-  labs(title = 'Travel time by public transport',
-       subtitle = 'Departure time: 7:00 am (3 hrs time window)',
-       y='Travel time (minutes)', x='TT rank (median)/N. of destinations') +
-  scale_color_manual(values = 'gray20') +
-  scale_fill_manual(values = 'blue') +
-  theme_minimal() + 
-  theme(legend.position = 'bottom', 
-        legend.title = element_blank())
-# Save plot
-ggsave('plots/pt_timewindow.png', plt_ttwindow, 
-       width = 8, height = 4,bg = 'white')
-
 # Clean env.
 rm(ttm)
 gc()

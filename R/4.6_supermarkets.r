@@ -46,9 +46,6 @@ bb <- getbb("United Kingdom", featuretype = "country")
 
 # Read raw OSM data
 supermarket_all <- readRDS('data/shops/osm/supermarket_raw.rds')
-# Inspect points
-glimpse(supermarket_all$osm_points)
-glimpse(supermarket_all$osm_polygons)
 
 # Filter points including names only
 supermarket_points <- 
@@ -56,10 +53,6 @@ supermarket_points <-
   filter(!is.na(name)) %>% 
   mutate(long = st_coordinates(.)[,1],
          lat = st_coordinates(.)[,2])
-# Map supermarket points
-supermarket_points %>% 
-  filter(lat > 55.6 & lat < 56) %>% 
-  mapview(col.region = "red") 
 
 # Supermarket polygon as centroid
 supermarket_poly <- 
@@ -72,7 +65,6 @@ supermarket_poly$area_sqm <-
   st_transform(27700) %>% 
   st_area(.) %>% 
   as.numeric
-summary(supermarket_poly$area_sqm)
 
 # Filter 'large' shop > 280 sqm.
 # Ref: The Sunday Trading Act 1994 (the STA 1994)
@@ -109,20 +101,6 @@ supermarkets_gb <-supermarket_bind %>%
   filter(st_intersects(., uk$osm_multipolygons, sparse = FALSE))
 # View
 View(supermarkets_gb)
-
-# Map supermarkets
-mapview(supermarkets_gb)
-
-# Quick map to visualize the density of supermarkets
-supermarkets_gb %>% 
-  #st_as_sf(coords = c('long', 'lat'), crs = 4326) %>% 
-  st_transform(3035) %>% 
-  cbind(st_coordinates(.)) %>%
-  ggplot() +
-  geom_hex(aes(X, Y), bins = c(35, 45)) +
-  coord_equal() +
-  scale_fill_viridis_c(option = 'plasma') +
-  theme_void() 
 
 # Spatially join LSOA/DZ
 supermarkets_gb <- supermarkets_gb %>% 
@@ -182,9 +160,6 @@ nearestSuper_pt <-
          by=.(fromId)]
 # Transform Inf values to NA
 nearestSuper_pt[,nearest_supermarket := fifelse(is.infinite(nearest_supermarket), NA_integer_, nearest_supermarket)]
-# Summary
-summary(nearestSuper_pt)
-hist(nearestSuper_pt$nearest_supermarket)
 
 
 # Cumulative accessibility to supermarkets --------------------------------
@@ -204,12 +179,6 @@ access_pt <-
 lapply(access_pt, summary)
 # Bind estimates in a single DF
 access_pt <- rbindlist(access_pt)
-# Plot distribution of accessibility
-access_pt %>% 
-  ggplot(aes(accessibility)) +
-  geom_histogram(binwidth = 30) +
-  coord_cartesian(xlim = c(0, 500)) +
-  facet_wrap(~time_cut)
 
 
 
