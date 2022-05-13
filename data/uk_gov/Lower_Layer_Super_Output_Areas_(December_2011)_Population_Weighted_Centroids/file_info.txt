@@ -1,0 +1,10 @@
+Lower Layer Super Output Areas (December 2011) Population Weighted Centroids
+Published by: Office for National Statistics Last updated: 21 December 2019 Topic: Not added Licence: Open Government Licence
+Summary
+This file contains the population weighted centroids for lower layer super output areas as at December 2011 in England and Wales. Contains both Ordnance Survey and ONS Intellectual Property Rights.
+
+Manually downloaded:
+2021-12-12
+
+Source:
+https://data.gov.uk/dataset/a40f54f7-b123-4185-952f-da90c56b0564/lower-layer-super-output-areas-december-2011-population-weighted-centroids

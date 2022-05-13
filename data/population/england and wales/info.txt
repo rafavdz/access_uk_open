@@ -1,0 +1,11 @@
+Edition in this dataset
+Mid-2020: SAPE23DT2 edition of this dataset
+
+About this Dataset
+Mid-year (30 June) estimates of the usual resident population for Lower layer Super Output Areas (LSOAs) in England and Wales by single year of age and sex.
+
+Source:
+https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/populationestimates/datasets/lowersuperoutputareamidyearpopulationestimates
+
+Downloaded: 
+2022-01-12

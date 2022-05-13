@@ -1,0 +1,15 @@
+GP and GP practice related data
+Data for General Medical Practices, General Medical Practitioners, Prescribing Cost Centres and Dispensaries, supplied by the NHS Prescription Services (NHS PS). Who to contact if you have queries about the data or queries about GP codes.
+
+
+Date uploaded:
+26 November 2021
+
+Role code:
+RO177(primary) RO72;RO76;RO80; RO82;RO87;RO246; RO247;RO248;RO249; RO250;RO251;RO252; RO253;RO254;RO255; RO259;RO260
+
+Source:
+https://digital.nhs.uk/services/organisation-data-service/file-downloads/gp-and-gp-practice-related-data
+
+Downloaded:
+2022-01-05

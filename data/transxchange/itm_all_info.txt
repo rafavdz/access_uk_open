@@ -1,0 +1,10 @@
+TransXChange bus info
+
+File:
+itm_all_gtfs.zip
+
+Source:
+https://data.bus-data.dft.gov.uk/timetable/download/
+
+Date download:
+2022-11-22

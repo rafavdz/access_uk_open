@@ -1,0 +1,40 @@
+About this dataset
+
+An employer survey of the number of jobs held by employees broken down by full/part-time and detailed industry (5 digit SIC2007). The survey records a job at the location of an employees workplace. Available from country down to lower level super output area and Scottish datazone.
+
+The figures include businesses registered for PAYE but not for VAT, so are not continuous with BRES datasets for years prior to 2015.  A fuller note on the inclusion of PAYE-only businesses is provided in the BRES News article published on 2 October 2017 at https://www.nomisweb.co.uk/articles/1062.aspx
+
+Release Date	Status	Reference Period
+9 Nov 21	Released	2020
+
+
+Query summary:
+Geography	
+All of the following:
+2011 scottish data zones
+2011 super output areas - lower layer
+Date	
+2020 (latest data)
+Employment Status	
+Employment
+Industry	No industrial breakdown (default)
+Percent: Count
+
+
+Information:
+Employees: An employee is anyone aged 16 years or over that an organisation directly pays from its payroll(s), in return for carrying out a full-time or part-time job or being on a training scheme. It excludes voluntary workers, self-employed, working owners who are not paid via PAYE.
+
+Full-time employees: those working more than 30 hours per week.
+Part-time employees: those working 30 hours or less per week.
+
+Employment includes employees plus the number of working owners. BRES therefore includes self-employed workers as long as they are registered for VAT or Pay-As-You-Earn (PAYE) schemes. Self employed people not registered for these, along with HM Forces and Government Supported trainees are excluded.
+
+Working owners are typically sole traders, sole proprietors or partners who receive drawings or a share of the profits.
+
+The figures include businesses registered for PAYE but not for VAT, so are not continuous with BRES datasets for years prior to 2015. A fuller note on the inclusion of PAYE-only businesses is provided in the BRES News article published on 2 October 2017 at https://www.nomisweb.co.uk/articles/1062.aspx
+
+Source:
+https://www.nomisweb.co.uk/query/construct/summary.asp?reset=yes&mode=construct&dataset=189&version=0&anal=1&initsel=
+
+Downloaded:
+2022-02-07

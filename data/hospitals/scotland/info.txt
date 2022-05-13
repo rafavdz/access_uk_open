@@ -1,0 +1,33 @@
+Current NHS Hospitals in Scotland
+
+URL: https://www.opendata.nhs.scot/dataset/cbd1802e-0e04-4282-88eb-d7bdcfb120f0/resource/c698f450-eeed-41a0-88f7-c1e40a568acc/download/current-hospital_flagged20211216.csv
+
+A listing of all NHS hospitals across Scotland. It should be noted that this list contains all hospitals in Scotland, not only the acute hospitals, and includes the two Special Health Boards - 'The Golden Jubilee National Hospital' and 'State Hospital'.
+
+Source:
+https://www.opendata.nhs.scot/dataset/hospital-codes/resource/c698f450-eeed-41a0-88f7-c1e40a568acc
+
+Downloaded:
+2022-01-06
+
+
+Additional Information
+Field	Value
+Data last updated	January 5, 2022
+Metadata last updated	March 27, 2018
+Created	March 27, 2018
+Format	text/csv
+License	UK Open Government Licence (OGL)
+created	over 3 years ago
+datastore active	True
+format	CSV
+has views	True
+id	c698f450-eeed-41a0-88f7-c1e40a568acc
+last modified	1 day ago
+mimetype	text/csv
+on same domain	True
+package id	cbd1802e-0e04-4282-88eb-d7bdcfb120f0
+revision id	3b364ff3-feb6-49d7-8a08-2ff824d0a6f8
+size	37.4 KiB
+state	active
+url type	upload

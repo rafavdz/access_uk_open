@@ -1,0 +1,13 @@
+NHS website datasets
+
+The NHS website is taking an active role in making data available to the public and those interested in improving the NHS. We are committed to ensuring relevant datasets are made available for further use and analysis once they have been published on the site.
+
+Data downloads
+
+Use the links below to download full extracts of our latest published data in CSV format. The data files below are updated daily and are made available by the NHS website under the Open Government Licence.
+
+Source:
+https://www.nhs.uk/about-us/nhs-website-datasets/
+
+Downloaded:
+2022-01-06

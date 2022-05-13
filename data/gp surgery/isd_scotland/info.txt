@@ -1,0 +1,26 @@
+Subject: Scottish GP practice details as at 01/10/2021	
+Web: http://www.isdscotland.org/Health-Topics/General-Practice/	
+GPs Practice Details - as at 01/10/2021	
+The sheet behind this one contains a data table at individual practice level.	
+The data table is large and not necessarily suitable for printing out.	
+The data items contained in the tables are as follows:	
+	
+	
+NHS Board Name	NHS Board Name
+HSCP Name	Health and Social Care Partnership Name
+Practice Code	Numeric Practice Code
+Practice List Size	The number of patients registered with the practice
+Practice Name	Name of the practice
+Address Line 1 - 4	Address of the practice (Lines 1 - 4)
+Postcode	Practice postcode
+Telephone Number	Telephone number of the practice
+Practice Type	Practice contract type
+Dispensing Practice	Whether the practice is a dispensing practice (Y/N)
+Cluster	GP Cluster that the GP Practice is a part of
+
+
+Source:
+https://www.isdscotland.org/Health-Topics/General-Practice/Workforce-and-Practice-Populations/
+
+Downloaded:
+2022-01-05
