@@ -1,6 +1,6 @@
 # Repository Maintenance Announcement
 
-As of today, we will *no longer actively maintain this repository*. The project has been moved to a new location and all updates will be posted there moving forward.
+As of today, **we will no longer actively maintain this repository**. The project has been moved to a new location and all updates will be posted there moving forward.
 
 Here is the URL of the new repository:
 
